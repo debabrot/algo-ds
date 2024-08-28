@@ -1,0 +1,1 @@
+"""Basic Implementation of a linked list in python"""
