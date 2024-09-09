@@ -19,6 +19,7 @@ class LinkedList:
     """
     def __init__(self):
         self.head = None
+        self.tail = None
 
     def insert_top(self, key):
         """
@@ -41,6 +42,19 @@ class LinkedList:
             while current.next:
                 current = current.next
             current.next = new_node
+
+    def insert_bottom_two_pointers(self, key):
+        """
+        Inserts value at the bottom of the linked list.
+        Not compatible with insert_top
+        """
+        new_node = Node(key)
+        if self.head is None:
+            self.head = new_node
+            self.tail = new_node
+        else:
+            self.tail.next = new_node
+            self.tail = new_node
 
     def reverse_list(self):
         """
