@@ -56,6 +56,30 @@ class LinkedList:
             self.tail.next = new_node
             self.tail = new_node
 
+    def delete_node(self, key):
+        """
+        Deletes a node from the list
+        """
+        temp = self.head
+
+        if temp is not None:
+            if temp.key == key:
+                self.head = temp.next
+                temp = None
+                return
+
+        while temp is not None:
+            if temp.key == key:
+                break
+            prev = temp
+            temp = temp.next
+
+        if temp == None:
+            return
+
+        prev.next = temp.next
+        temp = None
+
     def reverse_list(self):
         """
         Reverses a linked list
