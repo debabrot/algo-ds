@@ -93,8 +93,42 @@ class LinkedList:
             current = next_node
         self.head = prev
 
+    def swap_nodes(self, key1, key2):
+        """Swaps 2 nodes"""
+        # Find nodes
+        prev1 = None
+        current1 = self.head
+        while current1 and current1.key != key1:
+            prev1 = current1
+            current1 = current1.next
+
+        prev2 = None
+        current2 = self.head
+        while current2 and current2.key != key2:
+            prev2 = current2
+            current2 = current2.next
+
+        if not current1 or not current2:
+            return
+
+        # If not head then swap nodes
+        if prev1:
+            prev1.next = current2
+        else:
+            self.head = current2
+
+        # If not head then swap nodes
+        if prev2:
+            prev2.next = current1
+        else:
+            self.head = current1
+
+        # Swap pointers
+        current1.next, current2.next = current2.next, current1.next
+
     def print_list(self):
         current = self.head
         while current:
-            print(current.key)
+            print(current.data, end=" -> ")
             current = current.next
+        print("None")
