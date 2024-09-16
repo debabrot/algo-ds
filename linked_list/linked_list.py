@@ -74,7 +74,7 @@ class LinkedList:
             prev = temp
             temp = temp.next
 
-        if temp == None:
+        if temp is None:
             return
 
         prev.next = temp.next
@@ -127,6 +127,7 @@ class LinkedList:
         current1.next, current2.next = current2.next, current1.next
 
     def print_list(self):
+        """Prints the linked list"""
         current = self.head
         while current:
             print(current.data, end=" -> ")
