@@ -15,7 +15,7 @@ install:
 	pip install -e .
 
 lint:
-	@pylint --disable=R,C linked_list/linked_list.py
+	@pylint --disable=R,C data_structures/linked_list.py
 
 clean:
 	rm -rf $(VENV_DIR)
