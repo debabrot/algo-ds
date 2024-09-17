@@ -18,7 +18,7 @@ build:
 	pip install -e .
 
 lint:
-	@pylint --disable=R,C data_structures/linked_list.py
+	@pylint --disable=R,C $(shell find . -name "*.py")
 
 test:
 	pytest
