@@ -19,8 +19,11 @@ jobs:
       with:
         python-version: '3.10' # Specify the Python version you need
 
-    - name: Install dependencies
+    - name: Install required dependencies
       run: make install
+
+    - name: Build and install module
+      run: make build
 
     - name: Test cases
       run: make test

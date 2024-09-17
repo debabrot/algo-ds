@@ -5,13 +5,16 @@ CACHE_DIR = __pycache__
 PYTEST_CACHE_DIR = .pytest_cache
 EGG_INFO_DIR = algo_ds.egg-info
 
-build:
+venv:
 	python3 -m venv $(VENV_DIR)
 	@echo "Virtual environment created in $(VENV_DIR)"
-	python3 setup.py develop
-	@echo "Algo module build completed"
 
 install:
+	pip install -r requirements.txt
+
+build:
+	python3 setup.py develop
+	@echo "Algo module build completed"
 	pip install -e .
 
 lint:
