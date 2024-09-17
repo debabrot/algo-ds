@@ -17,6 +17,9 @@ install:
 lint:
 	@pylint --disable=R,C data_structures/linked_list.py
 
+test:
+	pytest
+
 clean:
 	rm -rf $(VENV_DIR)
 	@echo "Virtual environment deleted"
