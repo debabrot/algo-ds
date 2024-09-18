@@ -60,25 +60,14 @@ class LinkedList:
         """
         Deletes a node from the list
         """
-        temp = self.head
-
-        if temp is not None:
-            if temp.key == key:
-                self.head = temp.next
-                temp = None
-                return
-
-        while temp is not None:
-            if temp.key == key:
-                break
-            prev = temp
-            temp = temp.next
-
-        if temp is None:
-            return
-
-        prev.next = temp.next
-        temp = None
+        dummy = Node(0, self.head)
+        current = dummy
+        while current.next:
+            if current.next.key == key:
+                current.next = current.next.next
+            else:
+                current = current.next
+        return dummy.next
 
     def reverse_list(self):
         """
