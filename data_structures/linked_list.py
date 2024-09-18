@@ -60,7 +60,8 @@ class LinkedList:
         """
         Deletes a node from the list
         """
-        dummy = Node(0, self.head)
+        dummy = Node(0)
+        dummy.next = self.head
         current = dummy
         while current.next:
             if current.next.key == key:
