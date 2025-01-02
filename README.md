@@ -1,1 +1,1 @@
-Contains implementations of basic algorithms and data structures
+Contains implementations of basic algorithms and data structures.
