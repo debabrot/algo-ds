@@ -153,3 +153,34 @@ def dutch_partitioning_sort(nums):
             nums[j], nums[k] = nums[k], nums[j]
             k -= 1
     return nums
+
+
+def pancake_sort(arr):
+    """
+    Sorts array using the pancake sort algorithm.
+    Start from the last element of the array
+    1. Find the index of the max element of the array
+    2. Flip the array from 0 index to max index
+    3. Revers the whole array
+    4. Max element will be now at last. Reduce the size of array
+    
+    Arguments:
+        arr(list) - array to sort
+    Returns:
+        arr(list) - sorted array
+    """
+
+    curr_size = len(arr)
+    flip = lambda arr, i: arr[:i][::-1] + arr[i:]
+    while curr_size > 1:
+        mi = arr[:curr_size].index(max(arr[:curr_size]))
+ 
+        if mi != curr_size-1:
+            arr = flip(arr, mi+1)
+            print(arr, mi+1)
+
+            arr = flip(arr, curr_size)
+            print(arr, curr_size)
+        curr_size -= 1
+    return arr
+
