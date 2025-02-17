@@ -116,10 +116,27 @@ class LinkedList:
         # Swap pointers
         current1.next, current2.next = current2.next, current1.next
 
+    def remove_kth_node_from_end_of_list(self, k):
+        """
+        Removes kth node from the end of the list
+        """
+        fast = slow = self.head
+        for _ in range(k):
+            fast = fast.next
+        
+        if not fast:
+            return self.head.next
+        
+        while fast.next:
+            slow = slow.next
+            fast = fast.next
+        slow.next = slow.next.next
+        return self.head
+
     def print_list(self):
         """Prints the linked list"""
         current = self.head
         while current:
-            print(current.data, end=" -> ")
+            print(current.key, end=" -> ")
             current = current.next
         print("None")
