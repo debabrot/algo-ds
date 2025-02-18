@@ -133,6 +133,38 @@ class LinkedList:
         slow.next = slow.next.next
         return self.head
 
+    def rotate_right(self, k):
+        """
+        Rotates linked list by k steps from the right
+        """
+        count = 0
+        current = self.head
+        while current:
+            current = current.next
+            count += 1
+
+        if count <= 1 or k == 0:
+            return self.head
+
+        if k > count:
+            k = k % count
+
+        if k == count or count <= 1 or k == 0:
+            return self.head
+
+        fast = slow = self.head
+        for _ in range(count - k):
+            slow = fast
+            fast = fast.next
+
+        slow.next = None
+        slow = fast
+        while fast.next:
+            fast = fast.next
+
+        fast.next = self.head
+        return slow
+
     def print_list(self):
         """Prints the linked list"""
         current = self.head
