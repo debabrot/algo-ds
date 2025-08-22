@@ -1,4 +1,9 @@
+from collections import deque
+
 class TreeNode:
+    """
+    Tree data structure for tree with more then 2 nodes per child
+    """
     def __init__(self, data):
         self.data = data
         self.children = []
@@ -16,26 +21,46 @@ class TreeNode:
             child.print_tree(level + 1)
 
 
-# Let's create a simple tree
-root = TreeNode("Electronics")
-laptops = TreeNode("Laptops")
-phones = TreeNode("Phones")
-desktops = TreeNode("Desktops")
+def bfs(root):
+    if not root:
+        return []
 
-root.add_child(laptops)
-root.add_child(phones)
-root.add_child(desktops)
+    queue = deque([root])
+    visited = set()
+    result = []
+    visited.add(root)
+    print(f"Starting BFS from node: {root.data}")
+    print(queue, result, visited)
 
-macbook = TreeNode("MacBook Air")
-dell = TreeNode("Dell XPS")
-laptops.add_child(macbook)
-laptops.add_child(dell)
+    while queue:
+        current_node = queue.popleft()
+        result.append(current_node.data)
+        print(queue, result, visited)
 
-iphone = TreeNode("iPhone 15")
-android = TreeNode("Samsung Galaxy")
-phones.add_child(iphone)
-phones.add_child(android)
+        # Enqueue all unvisited children/neighbors
+        for child in current_node.children:
+            if child not in visited:
+                visited.add(child)
+                queue.append(child)
+            print(queue, result, visited)
+    return result
 
-# Print the tree
-print("--- Electronics Tree ---")
-root.print_tree()
+
+def max_height(root):
+    if not root:
+        return 0
+    queue = deque([root])
+    height = 0
+
+    while queue:
+        height += 1
+        level_size = len(queue)
+        print("pre", height, queue, level_size)
+        for _ in range(level_size):
+            current = queue.popleft()
+            for child in current.children:
+                queue.append(child)
+        print("post", height, queue, level_size)
+
+
+    return height
