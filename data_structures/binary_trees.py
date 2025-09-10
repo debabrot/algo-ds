@@ -30,3 +30,34 @@ def max_height(root):
         return 1 + max(max_left, max_right)
     else:
         return 0
+
+
+def find_min(root):
+    while root.left:
+        root = root.left
+    return root
+
+
+def find_max(root):
+    while root.right:
+        root = root.right
+    return root
+
+
+def delete_node(root, key):
+    if root.data < key:
+        root.right = delete_node(root.right, key)
+    elif root.data > key:
+        root.left = delete_node(root.left, key)
+    else:
+        if root.left is None and root.right is None:
+            return None
+        elif root.left is None:
+            return root.right
+        elif root.right is None:
+            return root.left
+        else:
+            successor = find_min(root.right)
+            root.data = successor.data
+            root.right = delete_node(root.right, key)
+    return root
