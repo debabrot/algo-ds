@@ -126,3 +126,23 @@ def delete(root: Optional[TreeNode], key: int) -> Optional[TreeNode]:
             root.right = delete(root.right, successor.value)
         return root
     return root
+
+
+def validate(root: Optional[TreeNode], low=float('-inf'), high=float('inf')) -> bool:
+    if root is None:
+        return True
+
+    if not low < root.value < high:
+        return False
+    return (validate(root.left, low, root.value) and
+            validate(root.right, root.value, high))
+
+
+def invert_tree(root: Optional[TreeNode]) -> Optional[TreeNode]:
+    if root is None:
+        return None
+    
+    root.left, root.right = root.right, root.left
+    invert_tree(root.left)
+    invert_tree(root.right)
+    return root
